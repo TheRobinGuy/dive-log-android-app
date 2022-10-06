@@ -12,9 +12,13 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val intent = Intent(this, MainActivity::class.java)
-                Handler().postDelayed({
-                        startActivity(intent)
-                        finish()
-        }, 1000)
+
+        val runnable = Runnable {
+            startActivity(intent)
+            finish()
+        }
+        val handler = Handler()
+
+        handler.postDelayed(runnable, 1000)
     }
 }
