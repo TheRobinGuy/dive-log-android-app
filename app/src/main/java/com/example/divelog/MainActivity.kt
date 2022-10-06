@@ -23,7 +23,14 @@ class MainActivity : AppCompatActivity() {
         val logAdapter = LogAdapter(this)
         logRecyclerView.adapter = logAdapter
 
-        val testLog = Log.Builder().id(1).location("Mullaghmore").date(Date(2022,10,6)).build()
+        val testLog = Log.Builder()
+            .id(1)
+            .location("Mullaghmore")
+            .date(Date(2022,10,6))
+            .depth(33.0)
+            .time(45)
+            .notes("Loads of fish, 10 congers, 2 chased a fish until and dolphin ate them... Then a whale ate him!")
+            .build()
 
         logList.add(testLog)
         logList.add(testLog)

@@ -13,10 +13,48 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationDateLinearLayout"
+            android:layout_centerHorizontal="true">
+        <TextView
+            android:id="@+id/logLocationView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/logDateView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/depthTimeLinearLayout"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="8dp"
+            android:layout_below="@+id/locationDateLinearLayout">
+            <TextView
+                android:id="@+id/logDepthView"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/logTimeView"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/logTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_below="@+id/depthTimeLinearLayout"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

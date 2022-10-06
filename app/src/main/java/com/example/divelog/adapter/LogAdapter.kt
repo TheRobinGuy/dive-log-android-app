@@ -21,12 +21,20 @@ class LogAdapter(activity: MainActivity) : Adapter<LogAdapter.ViewHolder>() {
     }
 
     class ViewHolder constructor(view: View): RecyclerView.ViewHolder(view) {
-            var log: TextView = view.findViewById(R.id.logTextView)
+            var logNotes: TextView = view.findViewById(R.id.logTextView)
+            var logLocation: TextView = view.findViewById(R.id.logLocationView)
+            var logDate: TextView = view.findViewById(R.id.logDateView)
+            var logDepth: TextView = view.findViewById(R.id.logDepthView)
+            var logTime: TextView = view.findViewById(R.id.logTimeView)
         }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val logItem: Log = logList[position]
-        holder.log.setText(String.format("Location: %s \t Date: %s", logItem.location, logItem.date))
+        holder.logNotes.text = String.format("Notes: \n%s", logItem.notes)
+        holder.logLocation.text = String.format("Location: %s", logItem.location)
+        holder.logDate.text = String.format("Date: %s", logItem.date)
+        holder.logDepth.text = String.format("Depth: %sm", logItem.depth)
+        holder.logTime.text = String.format("Time: %smins", logItem.time)
     }
 
     override fun getItemCount(): Int {
