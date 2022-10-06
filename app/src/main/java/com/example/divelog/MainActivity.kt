@@ -1,15 +1,20 @@
 package com.example.divelog
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divelog.adapter.LogAdapter
 import com.example.divelog.model.Log
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.sql.Date
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DialogClosedListener {
 
+    private lateinit var logAdapter: LogAdapter
+    private lateinit var floatingActionButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +25,16 @@ class MainActivity : AppCompatActivity() {
         val logList = mutableListOf<Log>()
 
         logRecyclerView.layoutManager = LinearLayoutManager(this)
-        val logAdapter = LogAdapter(this)
+        logAdapter = LogAdapter(this)
         logRecyclerView.adapter = logAdapter
+
+        floatingActionButton = findViewById(R.id.floatingActionButton)
+
+        val clickListener = View.OnClickListener{
+            AddNewLog.newInstance().show(supportFragmentManager, AddNewLog.TAG)
+        }
+
+        floatingActionButton.setOnClickListener(clickListener)
 
         val testLog = Log.Builder()
             .id(1)
@@ -37,5 +50,9 @@ class MainActivity : AppCompatActivity() {
         logList.add(testLog)
 
         logAdapter.setLogs(logList)
+    }
+
+    override fun handleDialogClose(dialog: DialogInterface) {
+        logAdapter.notifyDataSetChanged()
     }
 }
